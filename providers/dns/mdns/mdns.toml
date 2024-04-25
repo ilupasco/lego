@@ -1,0 +1,24 @@
+Name = "M DNS"
+Description = ''''''
+URL = "https://mdns.nic.md"
+Code = "mdns"
+Since = "v4.16.1"
+
+Example = '''
+MDNS_AUTH_TOKEN=xxxxxx \
+lego --email you@example.com --dns mdns --domains my.example.org run
+
+MDNS_AUTH_TOKEN_FILE=.secret.example.com ./lego --email info@example.com --dns mdns --domains new.example.com --dns.disable-cp run
+'''
+
+[Configuration]
+[Configuration.Credentials]
+MDNS_AUTH_TOKEN = "Authentication token"
+[Configuration.Additional]
+MDNS_POLLING_INTERVAL = "Time between DNS propagation check"
+MDNS_PROPAGATION_TIMEOUT = "Maximum waiting time for DNS propagation"
+MDNS_TTL = "The TTL of the TXT record used for the DNS challenge"
+MDNS_HTTP_TIMEOUT = "API request timeout"
+
+[Links]
+API = "https://mdns.nic.md/documentation/api"

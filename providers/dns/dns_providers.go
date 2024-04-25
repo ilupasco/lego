@@ -80,6 +80,7 @@ import (
 	"github.com/go-acme/lego/v4/providers/dns/loopia"
 	"github.com/go-acme/lego/v4/providers/dns/luadns"
 	"github.com/go-acme/lego/v4/providers/dns/mailinabox"
+	"github.com/go-acme/lego/v4/providers/dns/mdns"
 	"github.com/go-acme/lego/v4/providers/dns/metaname"
 	"github.com/go-acme/lego/v4/providers/dns/mydnsjp"
 	"github.com/go-acme/lego/v4/providers/dns/mythicbeasts"
@@ -402,6 +403,8 @@ func NewDNSChallengeProviderByName(name string) (challenge.Provider, error) {
 		return zoneee.NewDNSProvider()
 	case "zonomi":
 		return zonomi.NewDNSProvider()
+	case "mdns":
+		return mdns.NewDNSProvider()
 	default:
 		return nil, fmt.Errorf("unrecognized DNS provider: %s", name)
 	}
