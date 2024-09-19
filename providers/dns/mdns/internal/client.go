@@ -23,12 +23,12 @@ type Client struct {
 }
 
 // NewClient Creates a new Client.
-func NewClient(email, token, URL string) *Client {
-	BaseURL, _ := url.Parse(URL)
+func NewClient(email, token, baseURL string) *Client {
+	uri, _ := url.Parse(baseURL)
 	return &Client{
 		Email:      email,
 		Token:      token,
-		URL:        BaseURL,
+		URL:        uri,
 		HTTPClient: &http.Client{Timeout: 5 * time.Second},
 	}
 }
@@ -51,7 +51,6 @@ func (c *Client) AddRecord(ctx context.Context, zone string, record Record) (*Re
 
 // RemoveRecord removes a DNS record.
 func (c *Client) RemoveRecord(ctx context.Context, zone string, id int) error {
-
 	endpoint := c.URL.JoinPath("domain", dns01.UnFqdn(zone), "record", strconv.Itoa(id))
 	req, err := newJSONRequest(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {
