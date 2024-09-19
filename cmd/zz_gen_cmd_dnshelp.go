@@ -92,6 +92,7 @@ func allDNSCodes() string {
 		"loopia",
 		"luadns",
 		"mailinabox",
+		"mdns",
 		"metaname",
 		"mijnhost",
 		"mittwald",
@@ -1828,6 +1829,28 @@ func displayDNSHelp(w io.Writer, name string) error {
 
 		ew.writeln()
 		ew.writeln(`More information: https://go-acme.github.io/lego/dns/mailinabox`)
+
+	case "mdns":
+		// generated from: providers/dns/mdns/mdns.toml
+		ew.writeln(`Configuration for MDNS.`)
+		ew.writeln(`Code:	'mdns'`)
+		ew.writeln(`Since:	'v4.16.0'`)
+		ew.writeln()
+
+		ew.writeln(`Credentials:`)
+		ew.writeln(`	- "MDNS_AUTH_EMAIL":	Username email`)
+		ew.writeln(`	- "MDNS_AUTH_KEY":	Authorization key`)
+		ew.writeln(`	- "MDNS_BASE_URL":	Base API URL (ex: https://dns.nic.md/)`)
+		ew.writeln()
+
+		ew.writeln(`Additional Configuration:`)
+		ew.writeln(`	- "MDNS_HTTP_TIMEOUT":	API request timeout`)
+		ew.writeln(`	- "MDNS_POLLING_INTERVAL":	Time between DNS propagation check`)
+		ew.writeln(`	- "MDNS_PROPAGATION_TIMEOUT":	Maximum waiting time for DNS propagation`)
+		ew.writeln(`	- "MDNS_TTL":	The TTL of the TXT record used for the DNS challenge`)
+
+		ew.writeln()
+		ew.writeln(`More information: https://go-acme.github.io/lego/dns/mdns`)
 
 	case "metaname":
 		// generated from: providers/dns/metaname/metaname.toml
