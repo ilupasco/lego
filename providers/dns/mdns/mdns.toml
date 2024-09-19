@@ -1,0 +1,28 @@
+Name = "MDNS"
+Description = ''''''
+URL = "https://mdns.nic.md/api/"
+Code = "mdns"
+Since = "v4.16.0"
+
+Example = '''
+MDNS_AUTH_EMAIL=username@example.com \
+MDNS_AUTH_KEY=XXXXXXXXXXXXXX \
+MDNS_BASE_URL=https://mdns.nic.md/api \
+lego --email you@example.com --dns mdns --domains example.md run
+
+MDNS_AUTH_FILE=.secret.example.md ./lego --email info@example.com --dns mdns --domains example.md --dns.disable-cp run
+'''
+
+[Configuration]
+[Configuration.Credentials]
+MDNS_AUTH_EMAIL = "Username email"
+MDNS_AUTH_KEY = "Authorization key"
+MDNS_BASE_URL = "Base API URL (ex: https://dns.nic.md/)"
+[Configuration.Additional]
+MDNS_POLLING_INTERVAL = "Time between DNS propagation check"
+MDNS_PROPAGATION_TIMEOUT = "Maximum waiting time for DNS propagation"
+MDNS_TTL = "The TTL of the TXT record used for the DNS challenge"
+MDNS_HTTP_TIMEOUT = "API request timeout"
+
+[Links]
+API = "https://mdns.nic.md/api/doc"
